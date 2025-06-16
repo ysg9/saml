@@ -1272,9 +1272,9 @@ func (sp *ServiceProvider) validateSignature(el *etree.Element) error {
 	var certs []*x509.Certificate
 	if sp.IDPMetadata != nil && sp.IDPCertificateFingerprint == nil && sp.IDPCertificateFingerprintAlgorithm == nil && sp.IDPCertificate == nil {
 		certs, err = sp.getIDPSigningCerts()
-		for _, c := range certs {
-			fmt.Printf("validateSig: certs: %+v\n", *c)
-		}
+		//for _, c := range certs {
+		//	fmt.Printf("validateSig: certs: %+v\n", *c)
+		//}
 		if err != nil {
 			return fmt.Errorf("cannot validate signature on %s: %v", el.Tag, err)
 		}
@@ -1341,9 +1341,9 @@ func (sp *ServiceProvider) validateSignature(el *etree.Element) error {
 	}
 
 	fmt.Printf("validateSig: el = %+v\n", el)
-	//if _, err := validationContext.Validate(el); err != nil {
-	//	return fmt.Errorf("cannot validate signature on %s: %v", el.Tag, err)
-	//}
+	if _, err := validationContext.Validate(el); err != nil {
+		return fmt.Errorf("cannot validate signature on %s: %v", el.Tag, err)
+	}
 
 	return nil
 }
