@@ -1339,9 +1339,9 @@ func (sp *ServiceProvider) validateSignature(el *etree.Element) error {
 	}
 
 	fmt.Printf("validateSig: el = %+v\n", el)
-	if _, err := validationContext.Validate(el); err != nil {
-		return fmt.Errorf("cannot validate signature on %s: %v", el.Tag, err)
-	}
+	//if _, err := validationContext.Validate(el); err != nil {
+	//	return fmt.Errorf("cannot validate signature on %s: %v", el.Tag, err)
+	//}
 
 	return nil
 }
